@@ -1,9 +1,9 @@
-<a routerLink = "/"> < back </a>
+<br><a routerLink = "/" class="btn btn-primary"> < back </a>
 
 <h2>Add New USER</h2>
 
 
-<form id = "formNewProduct" name = "formNewProduct" #productData ="ngForm" (ngSubmit) = "addNewProduct(productData.value)">
+<form id = "formNewProduct" name = "formNewProduct" #productData ="ngForm"  enctype="multipart/form-data" (ngSubmit) = "addNewProduct(productData.value)">
   <div class="form-group">
   <label>First Name: </label>
   <input type = "text" name="First_Name" id="First_Name" placeholder="First Name" ngModel #FirstName="ngModel" maxlength="35" required pattern="[a-zA-Z ]+"><br>
@@ -24,34 +24,91 @@
         </div>
       </div>
 
-  <div class="form-group">
-    <label for="Nationality">Nationality</label>
-    <select id="Nationality" name="Nationality" [(ngModel)]="Nationality" class="form-control" >
-      <option value ="MY">Malaysian</option>
-      <option value ="SG">Singaporean</option>
-      <option value ="IN">Indonesian</option>
-    </select><br>
-  </div>
+      <div class="form-group">
+        <label for="Nationality">Nationality</label>
+        <select id="Nationality" name="Nationality" [(ngModel)]="Nationality" class="form-control">
+          <option value="MY">Malaysian</option>
+          <option value="SG">Singaporean</option>
+          <option value="IN">Indonesian</option>
+        </select><br><br>
+        <div *ngIf="Nationality==='MY'">
+          <label for="selectIdentity">Select Identity No Type</label>
+          <select id="National" name="National" [(ngModel)]="National" class="form-control">
+            <option>New IC</option>
+            <option>Old IC</option>
+          </select>
+          
+          <div *ngIf="National==='New IC'">
+                <label>Identity No: </label>
+                <input type = "text" name="Identity_No" id="Identity_No" (change)="onWordChange(IdentityNo.value)" ngModel #IdentityNo="ngModel" maxlength="12" minlength="12" required pattern="">
+              <div *ngIf="IdentityNo.touched" class="alert alert-danger">
+                    <div *ngIf="IdentityNo.errors?.required">
+                      Identity No is required
+                    </div> 
+                    <div *ngIf="IdentityNo.errors?.minlength">
+                      must be 12 valid characters long.
+                    </div> 
+                    <div *ngIf="IdentityNo.errors?.pattern">
+                      Invalid New IC method.
+                    </div>
+              </div>
 
-  <div class="form-group">
-      <label>Identity No: </label>
-     <input type = "text" name="Identity_No" id="Identity_No" placeholder="Identity No" ngModel #IdentityNo="ngModel" required pattern="[0-9]+"><br>
-  </div>
-  <div *ngIf="IdentityNo.touched" class="alert alert-danger">
-    <div *ngIf="IdentityNo.errors?.required">
-      Identity No is required
-    </div>
-  </div>
-  
-  <div class="form-group">
-    <label>Birthdate: </label>
-    <input type = "date" name="Birthdate" id="Birthdate" placeholder="Birthdate" ngModel #Bdate="ngModel" required><br>
-  </div>
-  <div *ngIf="Bdate.touched" class="alert alert-danger">
-    <div *ngIf="Bdate.errors?.required">
-      Birth Date is required
-    </div>
-  </div>
+                  
+          </div>
+          <br>
+
+          <div *ngIf="National==='Old IC'">
+            <label>Identity No: </label>
+            <input type = "text" name="Identity_No" id="Identity_No" placeholder="Identity No" ngModel #IdentityNo="ngModel" maxlength="7" minlength="7" required pattern="[0-9]+"><br>
+              <div *ngIf="IdentityNo.touched" class="alert alert-danger">
+                <div *ngIf="IdentityNo.errors?.required">
+                  Identity No is required
+                </div> 
+                <div *ngIf="IdentityNo.errors?.minlength">
+                  must be 7 characters long.
+                </div> 
+                <div *ngIf="IdentityNo.errors?.pattern">
+                  must be numeric.
+                </div>
+              </div>
+          </div>
+        </div>
+
+        <div *ngIf="Nationality!=='MY'">
+          <label>Identity No: </label>
+          <input type = "text" name="Identity_No" id="Identity_No" placeholder="Identity No" ngModel #IdentityNo="ngModel" maxlength="9" minlength="9" required pattern="[0-9]+"><br>
+          
+          <div *ngIf="IdentityNo.touched" class="alert alert-danger">
+            <div *ngIf="IdentityNo.errors?.required">
+              Identity No is required
+            </div>
+            <div *ngIf="IdentityNo.errors?.minlength">
+              must be 9 characters long.
+            </div>
+            <div *ngIf="IdentityNo.errors?.pattern">
+              must be numeric.
+            </div>
+            
+          </div>
+        </div>
+      </div>
+
+      <div ng-controller="Ctrl">
+        <div class="form-group">
+          <label>Birthdate: </label>
+          <input type = "date" name="Birthdate" id="Birthdate" placeholder="DD" ngModel #Bdate="ngModel" max="{{minAge | date:'yyyy-MM-dd'}}" required >
+        </div>
+      </div>
+     
+        <div *ngIf="Bdate.touched" class="alert alert-danger">
+          <div *ngIf="Bdate.errors?.required">
+            Day is required
+          </div>
+          <div *ngIf="Bdate.errors?.max">
+            Not enough age
+          </div>          
+        </div>
+     
   
 
   <div class="form-group">
@@ -122,6 +179,7 @@
     <div *ngIf="email.errors?.required">
       Email is required
     </div>
+    <div *ngIf="email.errors?.pattern ">Email Invalid</div>
   </div>
 
   <label>Bank Account: </label>
@@ -131,9 +189,9 @@
   <input type = "text" name="Issue_Bank" id="Issue_Bank" placeholder="Issue Bank" ngModel maxlength="2" ><br>
   
   <label>Attachment: </label>
-  <input type = "text" name="Attachment" id="Attachment" placeholder="Attachment" ngModel ><br><br>
+  <input type = "file"  name="Attachment" id="Attachment" placeholder="Attachment" ngModel ><br><br>
  
-  <button type = "submit" value = "Add Product" [disabled]="productData.invalid">Submit</button>
+  <button type = "submit" value = "Add Product" (click)="onUpload()" [disabled]="productData.invalid">Submit</button>
 
 </form> 
 <br>

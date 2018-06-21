@@ -21,3 +21,18 @@ a:hover {
     cursor: pointer;
     color:blue;
 }
+
+#Nationality {
+    width:13%;
+    display: inline-block;
+}
+
+#Country {
+    width:13%;
+    display: inline-block;
+}
+
+#National {
+    width: 13%;
+    display: inline-block;
+}

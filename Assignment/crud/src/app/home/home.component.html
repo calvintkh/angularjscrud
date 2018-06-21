@@ -1,26 +1,26 @@
-<a routerLink = '/product'> Create</a>
+<br><a routerLink = '/product' class="btn btn-primary"> Create</a>
 
 <h1>User</h1>
 
-<table>
-  <th>ID</th>
-  <th>First Name</th>
-  <th>Last Name</th>
-  <th>Nationality</th>
-  <th>Identity No</th>
-  <th>Birthdate</th>
-  <th>Contact No</th>
-  <th>Address</th>
-  <th>City</th>
-  <th>State</th>
-  <th>Postcode</th>
-  <th>Country</th>
-  <th>Email</th>
-  <th>Bank Account</th>
-  <th>Issue Bank</th>
-  <th>Attachment</th>
-  <th>DELETE</th>
-  <th>EDIT</th>
+<table class="table table-striped">
+  <th  class="bg-info text-white">ID</th>
+  <th  class="bg-info text-white">First Name</th>
+  <th  class="bg-info text-white">Last Name</th>
+  <th  class="bg-info text-white">Nationality</th>
+  <th  class="bg-info text-white">Identity No</th>
+  <th  class="bg-info text-white">Birthdate</th>
+  <th  class="bg-info text-white">Contact No</th>
+  <th  class="bg-info text-white">Address</th>
+  <th  class="bg-info text-white">City</th>
+  <th  class="bg-info text-white">State</th>
+  <th  class="bg-info text-white">Postcode</th>
+  <th  class="bg-info text-white">Country</th>
+  <th  class="bg-info text-white">Email</th>
+  <th  class="bg-info text-white">Bank Account</th>
+  <th  class="bg-info text-white">Issue Bank</th>
+  <th  class="bg-info text-white">Attachment</th>
+  <th  class="bg-info text-white">DELETE</th>
+  <th  class="bg-info text-white">EDIT</th>
   <tr *ngFor = "let product of products">
     <td>{{product.Nationality + product.Identity_No}}</td>
     <td>{{product.First_Name}}</td>
@@ -38,7 +38,7 @@
     <td>{{product.Bank_Account}}</td>
     <td>{{product.Issue_Bank}}</td>
     <td>{{product.Attachment}}</td>
-    <td (click) = "deleteProduct(product.id)"><a>DELETE</a></td>
-    <td [routerLink] = "['/updateProduct', product.id]"><a>UPDATE</a></td>
+    <td (click) = "deleteProduct(product.id)"><a class="btn btn-danger">DELETE</a></td>
+    <td [routerLink] = "['/updateProduct', product.id]"><a class="btn btn-info">UPDATE</a></td>
   </tr>
 </table>
