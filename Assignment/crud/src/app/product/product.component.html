@@ -8,8 +8,8 @@
   <label>First Name: </label>
   <input type = "text" name="First_Name" id="First_Name" placeholder="First Name" ngModel #FirstName="ngModel" maxlength="35" required pattern="[a-zA-Z ]+"><br>
   </div>
-  <div *ngIf="FirstName.touched" class="alert alert-danger">
-    <div *ngIf="FirstName.errors?.required">
+  <div *ngIf="FirstName.touched" >
+    <div *ngIf="FirstName.errors?.required" class="alert alert-danger">
       First Name is required
     </div>
   </div>
@@ -18,8 +18,8 @@
       <label>Last Name: </label>
       <input type = "text" name="Last_Name" id="Last_Name" placeholder="Last Name" ngModel #LastName="ngModel" maxlength="50" required pattern="[a-zA-Z ]+"><br><br>
   </div>
-      <div *ngIf="LastName.touched" class="alert alert-danger">
-        <div *ngIf="LastName.errors?.required">
+      <div *ngIf="LastName.touched" >
+        <div *ngIf="LastName.errors?.required" class="alert alert-danger">
           Last Name is required
         </div>
       </div>
@@ -40,15 +40,15 @@
           
           <div *ngIf="National==='New IC'">
                 <label>Identity No: </label>
-                <input type = "text" name="Identity_No" id="Identity_No" (change)="onWordChange(IdentityNo.value)" ngModel #IdentityNo="ngModel" maxlength="12" minlength="12" required pattern="">
-              <div *ngIf="IdentityNo.touched" class="alert alert-danger">
-                    <div *ngIf="IdentityNo.errors?.required">
+                <input type = "text" name="Identity_No" id="Identity_No" (change)="onWordChange(IdentityNo.value)" ngModel #IdentityNo="ngModel" maxlength="12" minlength="12" required pattern="[0-9]+">
+              <div *ngIf="IdentityNo.touched" >
+                    <div *ngIf="IdentityNo.errors?.required" class="alert alert-danger">  
                       Identity No is required
                     </div> 
-                    <div *ngIf="IdentityNo.errors?.minlength">
+                    <div *ngIf="IdentityNo.errors?.minlength" class="alert alert-danger">
                       must be 12 valid characters long.
                     </div> 
-                    <div *ngIf="IdentityNo.errors?.pattern">
+                    <div *ngIf="IdentityNo.errors?.pattern" class="alert alert-danger">
                       Invalid New IC method.
                     </div>
               </div>
@@ -60,14 +60,14 @@
           <div *ngIf="National==='Old IC'">
             <label>Identity No: </label>
             <input type = "text" name="Identity_No" id="Identity_No" placeholder="Identity No" ngModel #IdentityNo="ngModel" maxlength="7" minlength="7" required pattern="[0-9]+"><br>
-              <div *ngIf="IdentityNo.touched" class="alert alert-danger">
-                <div *ngIf="IdentityNo.errors?.required">
+              <div *ngIf="IdentityNo.touched">
+                <div *ngIf="IdentityNo.errors?.required"  class="alert alert-danger">
                   Identity No is required
                 </div> 
-                <div *ngIf="IdentityNo.errors?.minlength">
+                <div *ngIf="IdentityNo.errors?.minlength"  class="alert alert-danger">
                   must be 7 characters long.
                 </div> 
-                <div *ngIf="IdentityNo.errors?.pattern">
+                <div *ngIf="IdentityNo.errors?.pattern" class="alert alert-danger">
                   must be numeric.
                 </div>
               </div>
@@ -78,14 +78,14 @@
           <label>Identity No: </label>
           <input type = "text" name="Identity_No" id="Identity_No" placeholder="Identity No" ngModel #IdentityNo="ngModel" maxlength="9" minlength="9" required pattern="[0-9]+"><br>
           
-          <div *ngIf="IdentityNo.touched" class="alert alert-danger">
-            <div *ngIf="IdentityNo.errors?.required">
+          <div *ngIf="IdentityNo.touched" >
+            <div *ngIf="IdentityNo.errors?.required" class="alert alert-danger">
               Identity No is required
             </div>
-            <div *ngIf="IdentityNo.errors?.minlength">
+            <div *ngIf="IdentityNo.errors?.minlength" class="alert alert-danger">
               must be 9 characters long.
             </div>
-            <div *ngIf="IdentityNo.errors?.pattern">
+            <div *ngIf="IdentityNo.errors?.pattern" class="alert alert-danger">
               must be numeric.
             </div>
             
@@ -100,11 +100,11 @@
         </div>
       </div>
      
-        <div *ngIf="Bdate.touched" class="alert alert-danger">
-          <div *ngIf="Bdate.errors?.required">
+        <div *ngIf="Bdate.touched" >
+          <div *ngIf="Bdate.errors?.required" class="alert alert-danger">
             Day is required
           </div>
-          <div *ngIf="Bdate.errors?.max">
+          <div *ngIf="Bdate.errors?.max" class="alert alert-danger">
             Not enough age
           </div>          
         </div>
@@ -115,8 +115,8 @@
     <label>Contact No: </label>
     <input type = "text" name="Contact_No" id="Contact_No" placeholder="Contact No" ngModel #ContactNo="ngModel" maxlength="15" required pattern="[0-9]+"><br>
   </div>
-  <div *ngIf="ContactNo.touched" class="alert alert-danger">
-    <div *ngIf="ContactNo.errors?.required">
+  <div *ngIf="ContactNo.touched" >
+    <div *ngIf="ContactNo.errors?.required" class="alert alert-danger">
       Contact No is required
     </div>
   </div>
@@ -125,8 +125,8 @@
     <label>Address: </label>
     <input type = "text" name="Address" id="Address" placeholder="Address" ngModel #Address="ngModel" maxlength="100" required><br>
   </div>
-  <div *ngIf="Address.touched" class="alert alert-danger">
-    <div *ngIf="Address.errors?.required">
+  <div *ngIf="Address.touched" >
+    <div *ngIf="Address.errors?.required"class="alert alert-danger">
       Address is required
     </div>
   </div>
@@ -135,8 +135,8 @@
     <label>City: </label>
     <input type = "text" name="City" id="City" placeholder="City" ngModel #City="ngModel" maxlength="35" required><br>
   </div>
-  <div *ngIf="City.touched" class="alert alert-danger">
-    <div *ngIf="City.errors?.required">
+  <div *ngIf="City.touched" >
+    <div *ngIf="City.errors?.required" class="alert alert-danger">
       City is required
     </div>
   </div>
@@ -145,8 +145,8 @@
     <label>State: </label>
     <input type = "text" name="State" id="State" placeholder="State" ngModel #State="ngModel" maxlength="35" required><br>
   </div>
-  <div *ngIf="State.touched" class="alert alert-danger">
-    <div *ngIf="State.errors?.required">
+  <div *ngIf="State.touched" >
+    <div *ngIf="State.errors?.required" class="alert alert-danger">
       State is required
     </div>
   </div>
@@ -156,8 +156,8 @@
     <input type = "text" name="Post_Code" id="Post_Code" placeholder="Postcode" ngModel #PostCode="ngModel" maxlength="15" required pattern="[0-9]+"><br>
   <br>
   </div>
-  <div *ngIf="PostCode.touched" class="alert alert-danger">
-    <div *ngIf="PostCode.errors?.required">
+  <div *ngIf="PostCode.touched" >
+    <div *ngIf="PostCode.errors?.required" class="alert alert-danger">
       PostCode is required
     </div>
   </div>
@@ -175,11 +175,11 @@
     <label>Email: </label>
     <input type = "email" name="Email" id="Email" placeholder="Email" ngModel #email="ngModel" maxlength="100" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required><br>
   </div>
-  <div *ngIf="email.touched" class="alert alert-danger">
-    <div *ngIf="email.errors?.required">
+  <div *ngIf="email.touched" >
+    <div *ngIf="email.errors?.required" class="alert alert-danger">
       Email is required
     </div>
-    <div *ngIf="email.errors?.pattern ">Email Invalid</div>
+    <div *ngIf="email.errors?.pattern " class="alert alert-danger">Email Invalid</div>
   </div>
 
   <label>Bank Account: </label>
